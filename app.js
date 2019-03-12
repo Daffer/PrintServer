@@ -1,6 +1,8 @@
 const http = require('http');
-const router = require('requestManager');
+const router = require('./engine/Router');
 
-const app = http.createServer(router.route);
+router.initControllers('/app/controll');
+const app = http.createServer(router.handle);
 
 app.listen(3000);
+console.log("Start server");
