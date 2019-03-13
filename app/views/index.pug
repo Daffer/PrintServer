@@ -1,0 +1,32 @@
+include ./layout
+
+block content
+    h1= title
+    p Welcome to #{title}
+
+    form(name='settings', method='POST', action='/scan', enctype='application/x-www-form-urlencoded')
+        div.setting-line
+            span Качество
+            select(name='dpi')
+                option 150
+                option 300
+                option 1200
+
+        div.setting-line
+            span Яркость
+            input(type='range')
+
+        div.setting-line
+            span Контрастность
+            input(type='range')
+
+        div.submit-line
+            div.button.submit
+                input(type='submit')
+
+            div.button.cancel
+
+
+    div#preview-field
+        img.preview
+
