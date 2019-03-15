@@ -1,8 +1,10 @@
 const router = require('koa-router')();
+const scan = require('./../controllers/scan').ScanController;
 
 router.get('/', async (ctx) => {
-    await ctx.render('index', {
-        title: 'Hello Koa 2!'
+    let settings = await scan.getDefault();
+    await ctx.render('main', {
+        settings: settings
     });
 });
 
