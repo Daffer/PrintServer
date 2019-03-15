@@ -1,16 +1,17 @@
 include ./layout
 
 block content
-    h1= title
-    p Welcome to #{title}
-
     form(name='settings', method='POST', action='/scan', enctype='application/x-www-form-urlencoded')
+        div.setting-line
+            span Режим
+            select(name='mode')
+                -for (let i = 0; i < settings.mode.values.length; i++) {
+                    options(value=settings.mode.values[i]) #{settings.mode.values[i]}
+                -}
         div.setting-line
             span Качество
             select(name='dpi')
-                option 150
-                option 300
-                option 1200
+                
 
         div.setting-line
             span Яркость
