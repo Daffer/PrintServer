@@ -1,33 +1,20 @@
 include ./layout
-
-block content
-    form(name='settings', method='POST', action='/scan', enctype='application/x-www-form-urlencoded')
-        div.setting-line
-            span Режим
-            select(name='mode')
-                -for (let i = 0; i < settings.mode.values.length; i++) {
-                    options(value=settings.mode.values[i]) #{settings.mode.values[i]}
-                -}
-        div.setting-line
-            span Качество
-            select(name='dpi')
-                
-
-        div.setting-line
-            span Яркость
-            input(type='range')
-
-        div.setting-line
-            span Контрастность
-            input(type='range')
-
-        div.submit-line
-            div.button.submit
-                input(type='submit')
-
-            div.button.cancel
-
-
-    div#preview-field
-        img.preview
-
+    block body
+        include ./header
+        div.page-content
+            div.page-row
+                div.tile.t-medium
+                    a(href='/printer')
+                        div.image-container
+                            img(src='/img/printer.png')
+                        span.tile-title Печать
+                div.tile.t-medium
+                    a(href='/scan')
+                        div.image-container
+                            img(src='/img/scaner.png')
+                        span.tile-title Сканирование
+                div.tile.t-medium
+                    a(href='/scan/fast')
+                        div.image-container
+                            img(src='/img/copy.png')
+                        span.tile-title 
