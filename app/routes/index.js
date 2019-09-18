@@ -1,7 +1,7 @@
 const router = require('koa-router')();
-const scan = require('./../controllers/scan').ScanController;
+const scan = require('./../middleware/scan').ScanController;
 
-router.get('/', async (ctx) => {
+router.get('/aaaaa', async (ctx) => {
     let settings = await scan.getDefault();
     await ctx.render('main', {
         settings: settings
