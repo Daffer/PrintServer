@@ -1,6 +1,6 @@
 const Koa = require('koa');
 const app = new Koa();
-let less = require('koa-less2x');
+const less = require('koa-less2x');
 const views = require('koa-views');
 const json = require('koa-json');
 const onerror = require('koa-onerror');
@@ -11,6 +11,7 @@ const path = require('path');
 
 const index = require('./app/routes/index');
 const users = require('./app/routes/users');
+const api = require('./app/routes/api');
 
 // error handler
 onerror(app);
@@ -21,7 +22,13 @@ app.use(bodyparser({
 }));
 app.use(json());
 app.use(logger());
-app.use(less(path.normalize(__dirname + '/public/'), {
+app.use(less(path.normalize(__dirname + '/public/less/'), {
+    preprocess: {
+        path: function (pathname) {
+            let lessPath = pathname.replace('css/', '');
+            return lessPath;
+        }
+    },
     debug: true,
     dest: path.normalize(__dirname + '/public/')
 }));
@@ -41,6 +48,7 @@ app.use(async (ctx, next) => {
 // routes
 app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
+app.use(api.routes(), api.allowedMethods());
 
 // error-handling
 app.on('error', (err, ctx) => {
