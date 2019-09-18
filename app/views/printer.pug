@@ -1,0 +1,10 @@
+include ./layout
+    block body
+        include ./header
+            div.page-content
+                div.page-row
+                    div.tile.file-load
+                        div.image-container
+                            img(src='/img/file.png')
+                        span.tile-title Файл
+                        input(type='file')
