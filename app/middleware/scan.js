@@ -1,4 +1,4 @@
-const settings = require('./interfaces/iScanSettings');
+const settings = require('../interfaces/iScanSettings');
 
 //==================================//
 //          SCAN CONTROLLER         //
